@@ -1,0 +1,37 @@
+{
+  "nome": "COPPA FANTAGUFI",
+  "edizioni": {
+    "2025/26": {
+      "formato": "Otto squadre qualificate, eliminazione diretta in gara secca.",
+      "vincitore": "Scarsenal",
+      "finalista": "???",
+      "notaVincitore": "Campionato perso, coppa vinta. Ne parla come se avesse fatto il triplete.",
+      "avviso": "⚠ TABELLONE INCOMPLETO — riempi i ??? con quarti, semifinali e risultato della finale.",
+      "fasi": [
+        {
+          "nome": "QUARTI DI FINALE",
+          "partite": [
+            { "casa": "???", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" },
+            { "casa": "???", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" },
+            { "casa": "???", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" },
+            { "casa": "???", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" }
+          ]
+        },
+        {
+          "nome": "SEMIFINALI",
+          "partite": [
+            { "casa": "Scarsenal", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" },
+            { "casa": "???", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "" }
+          ]
+        },
+        {
+          "nome": "FINALE",
+          "partite": [
+            { "casa": "Scarsenal", "trasferta": "???", "golCasa": null, "golTrasferta": null, "puntiCasa": null, "puntiTrasferta": null, "commento": "Vinta da Scarsenal. Il risultato esatto va ancora inserito, ma il vincitore lo sappiamo tutti perche' lo ripete da mesi." }
+          ]
+        }
+      ]
+    }
+  },
+  "vuoto": "Il tabellone della Coppa si compila dopo l'asta di settembre 2026, quando si sa chi si qualifica. Le edizioni passate si guardano dall'Albo d'Oro, scegliendo l'annata."
+}

@@ -1,0 +1,14 @@
+# Anteprima locale con i dati incorporati: online serve index.html.
+# Si rigenera quando vuoi con: python rigenera_anteprima.py
+anteprima.html
+
+# Residui di lavorazione sulle immagini (i loghi squadra usati sono i .jpg)
+assets/squadre/*.png
+assets/logo.jpeg
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc

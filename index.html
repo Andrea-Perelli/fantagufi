@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lega Fantagufi — Fantacalcio</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#0b6b2f; --verde-scuro:#064c21; --verde-chiaro:#18a04a;
+  --giallo:#ffd400; --arancio:#ff7a00; --rosso:#e02020; --blu:#1c3fa8;
+  --crema:#f4ecd8; --nero:#12100c; --notte:#000711; --grigio:#8a8577;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--nero);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(135deg, var(--verde) 0 28px, var(--verde-scuro) 28px 56px);
+  font-family:'VT323', monospace;font-size:20px;color:var(--nero);
+  padding:14px 10px 60px;image-rendering:pixelated;
+}
+.wrap{max-width:1000px;margin:0 auto}
+
+.box{background:var(--crema);border:4px solid var(--nero);box-shadow:8px 8px 0 rgba(0,0,0,.55);margin-bottom:18px}
+.box-t{background:var(--nero);color:var(--giallo);font-family:'Press Start 2P', monospace;font-size:11px;padding:9px 10px;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.box-b{padding:14px}
+
+/* testata */
+header.box{background:var(--notte)}
+.testata{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;text-align:center}
+.testata img{width:170px;height:170px;flex:0 0 auto;image-rendering:auto}
+.testo{flex:1 1 320px;min-width:270px}
+.logo{font-family:'Press Start 2P', monospace;font-size:clamp(15px,4.2vw,28px);line-height:1.5;color:var(--giallo);text-shadow:3px 3px 0 #7a5c00, 6px 6px 0 rgba(0,0,0,.6);margin:0 0 12px}
+.sub{font-size:22px;color:#c9c0a8;border-top:3px dashed #4a4133;padding-top:9px;margin-top:10px}
+.pill{display:inline-block;background:var(--rosso);color:#fff;font-family:'Press Start 2P', monospace;font-size:9px;padding:6px 9px;border:3px solid var(--nero);margin:3px 5px 3px 0}
+.pill.blu{background:var(--blu)}
+.pill.verde{background:var(--verde-chiaro)}
+
+.ticker{background:var(--nero);color:var(--giallo);border:4px solid var(--nero);overflow:hidden;margin-bottom:18px;box-shadow:8px 8px 0 rgba(0,0,0,.55)}
+.ticker span{display:inline-block;white-space:nowrap;padding:8px 0;font-size:21px;animation:scroll 38s linear infinite}
+@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.ticker span{animation:none;white-space:normal;padding:8px 12px}}
+
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+nav button{font-family:'Press Start 2P', monospace;font-size:10px;background:var(--crema);color:var(--nero);border:4px solid var(--nero);box-shadow:5px 5px 0 rgba(0,0,0,.55);padding:11px 12px;cursor:pointer;flex:1 1 auto;min-width:112px}
+nav button:hover{background:#fff}
+nav button[aria-selected="true"]{background:var(--giallo);transform:translate(3px,3px);box-shadow:2px 2px 0 rgba(0,0,0,.55)}
+nav button:focus-visible{outline:3px solid var(--blu);outline-offset:2px}
+
+/* tabelle */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px}
+th{background:var(--nero);color:var(--giallo);font-family:'Press Start 2P', monospace;font-size:8px;padding:9px 6px;text-align:center;letter-spacing:.5px}
+td{padding:8px 6px;text-align:center;border-bottom:2px dotted #b8ae95;font-size:20px}
+tbody tr:nth-child(even){background:rgba(0,0,0,.045)}
+.sx{text-align:left}
+.pos{font-family:'Press Start 2P', monospace;font-size:10px}
+.p1 td{background:rgba(255,212,0,.4)!important}
+.plast td{background:rgba(224,32,32,.16)!important}
+.team{font-weight:bold;font-size:22px}
+.nick{display:block;font-size:16px;color:#6e6552}
+.pts{font-family:'Press Start 2P', monospace;font-size:11px}
+.fp-best{color:#0f8a35;font-weight:bold}
+.fp-worst{color:var(--rosso);font-weight:bold}
+.ex{font-size:15px;color:var(--grigio)}
+
+/* schede squadra */
+.squadre{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px}
+.sq{background:#fff;border:4px solid var(--nero);box-shadow:5px 5px 0 rgba(0,0,0,.4);display:flex;flex-direction:column}
+.sq .stemma{background:var(--notte);border-bottom:4px solid var(--nero);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sq .stemma img{width:100%;height:100%;object-fit:contain;image-rendering:auto}
+.sq .corpo{padding:10px;flex:1;display:flex;flex-direction:column;gap:6px}
+.sq h3{font-family:'Press Start 2P', monospace;font-size:10px;margin:0;line-height:1.6}
+.sq .mister{font-size:18px;color:#4a4133}
+.sq .mister.vuoto{color:var(--grigio);font-style:italic}
+.sq .motto{font-size:19px;color:#5d5342;font-style:italic;border-top:2px dotted #b8ae95;padding-top:6px;margin-top:auto}
+.sq.ritirata{opacity:.72}
+.sq.ritirata .stemma{filter:grayscale(.75)}
+.trofei{display:flex;gap:5px;flex-wrap:wrap}
+.trofei span{background:var(--nero);color:var(--giallo);font-size:16px;padding:2px 7px}
+.trofei span.zero{background:#e6dcc4;color:#6e6552}
+
+/* schede generiche */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:#fff;border:4px solid var(--nero);box-shadow:5px 5px 0 rgba(0,0,0,.35);padding:12px}
+.card h3{font-family:'Press Start 2P', monospace;font-size:10px;margin:0 0 8px;line-height:1.6}
+.card p{margin:6px 0 0;font-size:19px;color:#4a4133}
+.big{font-size:30px;line-height:1}
+
+.warn{background:var(--giallo);border:4px solid var(--nero);padding:10px 12px;font-size:19px;margin-bottom:14px}
+.note{font-size:17px;color:#6e6552;margin:10px 0 0}
+.vuoto-box{text-align:center;padding:26px 14px}
+.vuoto-box .ic{font-size:52px;line-height:1}
+.vuoto-box h3{font-family:'Press Start 2P', monospace;font-size:12px;margin:12px 0 8px;line-height:1.6}
+.vuoto-box p{font-size:20px;color:#4a4133;margin:0 auto;max-width:520px}
+
+/* partite */
+.gday{border:4px solid var(--nero);margin-bottom:14px;background:#fff}
+.gday>h3{margin:0;background:var(--blu);color:#fff;font-family:'Press Start 2P', monospace;font-size:10px;padding:9px 10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.match{padding:10px 12px;border-bottom:2px dotted #b8ae95}
+.match:last-child{border-bottom:0}
+.mrow{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.mrow .h{text-align:right}
+.mrow .a{text-align:left}
+.score{font-family:'Press Start 2P', monospace;font-size:13px;background:var(--nero);color:var(--giallo);padding:7px 9px;white-space:nowrap}
+.score.tbd{background:var(--grigio);color:#fff;font-size:9px}
+.fp{font-size:16px;color:#6e6552}
+.cmt{font-size:18px;color:#5d5342;margin-top:6px;font-style:italic}
+.win{font-weight:bold}
+
+/* coppa */
+.trofeo{text-align:center;padding:18px 12px;background:var(--giallo);border:4px solid var(--nero);margin-bottom:16px}
+.trofeo .cup{font-size:56px;line-height:1}
+.trofeo .nome{font-family:'Press Start 2P', monospace;font-size:14px;margin:10px 0 6px;line-height:1.6}
+.fase{margin-bottom:14px}
+.fase>h3{margin:0;background:var(--rosso);color:#fff;font-family:'Press Start 2P', monospace;font-size:10px;padding:9px 10px}
+.fase.finale>h3{background:var(--giallo);color:var(--nero)}
+.tbd-team{color:var(--grigio)}
+
+/* podio */
+.podio{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border:4px solid var(--nero);background:#fff;margin-bottom:16px}
+.slot{padding:12px;border-right:2px dotted #b8ae95;text-align:center}
+.slot:last-child{border-right:0}
+.slot.oro{background:rgba(255,212,0,.4)}
+.slot.argento{background:rgba(0,0,0,.06)}
+.slot.bronzo{background:rgba(255,122,0,.16)}
+.slot.legno{background:rgba(224,32,32,.14)}
+.slot .medaglia{font-size:26px;line-height:1.2}
+.slot .ruolo{font-family:'Press Start 2P', monospace;font-size:8px;color:#4a4133;margin:4px 0 6px}
+.slot .chi{font-size:21px;font-weight:bold;line-height:1.25}
+
+/* premi */
+.pr{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:9px 0;border-bottom:2px dotted #b8ae95}
+.pr:last-child{border-bottom:0}
+.pr .ico{font-size:24px;line-height:1.1;text-align:center}
+.pr .tit{font-family:'Press Start 2P', monospace;font-size:9px;line-height:1.7}
+.pr .vin{font-size:21px;font-weight:bold}
+.pr .det{font-size:18px;color:#5d5342;font-style:italic}
+
+/* regolamento */
+.rego{border:4px solid var(--nero);background:#fff;margin-bottom:14px}
+.rego>h3{margin:0;background:var(--nero);color:var(--giallo);font-family:'Press Start 2P', monospace;font-size:10px;padding:10px 12px;display:flex;gap:10px;align-items:center}
+.rego>h3 .ic{font-size:20px}
+.rego ol{margin:0;padding:12px 12px 12px 40px}
+.rego li{font-size:20px;margin-bottom:9px;line-height:1.45}
+.rego li:last-child{margin-bottom:0}
+.rego .cmt{padding:0 12px 12px}
+
+select{font-family:'VT323', monospace;font-size:20px;background:var(--crema);border:3px solid var(--nero);padding:5px 8px}
+.picker{background:var(--giallo);border:4px solid var(--nero);padding:10px 12px;margin-bottom:16px;font-family:'Press Start 2P', monospace;font-size:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+footer{color:var(--crema);font-size:18px;text-align:center;text-shadow:2px 2px 0 rgba(0,0,0,.7);margin-top:26px;line-height:1.7}
+.err{background:var(--rosso);color:#fff;padding:12px;border:4px solid var(--nero);font-size:19px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="box">
+    <div class="box-b">
+      <div class="testata">
+        <img src="assets/logo.png" alt="Stemma della Lega Fantagufi: un gufo con un pallone" width="170" height="170">
+        <div class="testo">
+          <h1 class="logo" id="logo">CARICAMENTO...</h1>
+          <div id="pills"></div>
+          <div class="sub" id="motto"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker"><span id="ticker">&nbsp;</span></div>
+
+  <nav role="tablist" aria-label="Sezioni">
+    <button role="tab" aria-selected="true"  data-tab="home">HOME</button>
+    <button role="tab" aria-selected="false" data-tab="classifica">CLASSIFICA</button>
+    <button role="tab" aria-selected="false" data-tab="calendario">CALENDARIO</button>
+    <button role="tab" aria-selected="false" data-tab="coppa">COPPA</button>
+    <button role="tab" aria-selected="false" data-tab="albo">ALBO D'ORO</button>
+    <button role="tab" aria-selected="false" data-tab="regolamento">REGOLAMENTO</button>
+  </nav>
+
+  <main id="main"><div class="box"><div class="box-b">Caricamento dati...</div></div></main>
+
+  <footer>
+    &lt; Il gong non aspetta nessuno &gt;<br>
+    Best viewed in Netscape Navigator 4.0 &middot; 800x600
+  </footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = n => (n === null || n === undefined || n === '') ? '-' : n;
+const ignoto = s => String(s ?? '').startsWith('?');
+
+const D = {};
+let annata = null;
+let filtroGiornata = null;
+
+async function load(name){
+  const r = await fetch(`data/${name}.json`, {cache:'no-store'});
+  if(!r.ok) throw new Error(`${name}.json: HTTP ${r.status}`);
+  return r.json();
+}
+
+/* ---------- anagrafica squadre e rinomine ---------- */
+// ALIAS: nome storico (minuscolo) -> squadra attuale
+let ALIAS = {};
+function costruisciAlias(){
+  ALIAS = {};
+  (D.squadre||[]).forEach(s => {
+    ALIAS[s.nome.toLowerCase()] = s;
+    (s.nomiPrecedenti||[]).forEach(v => ALIAS[String(v).toLowerCase()] = s);
+  });
+}
+const squadraDi = nome => ALIAS[String(nome ?? '').toLowerCase()] || null;
+
+// nome da mostrare: sempre quello attuale. Se il dato usa un nome vecchio lo segnala.
+function nomeMostrato(nome){
+  const s = squadraDi(nome);
+  if(!s) return {nome: nome, ex: null, nota: ignoto(nome) ? null : 'non collegata'};
+  const diverso = s.nome.toLowerCase() !== String(nome).toLowerCase();
+  return {nome: s.nome, ex: diverso ? nome : null, nota: null};
+}
+function etichetta(nome){
+  const n = nomeMostrato(nome);
+  return `${esc(n.nome)}${n.ex ? ` <span class="ex">(ex ${esc(n.ex)})</span>` : ''}`;
+}
+
+function ordina(c){
+  return [...c].sort((a,b) =>
+    (b.punti - a.punti) || ((b.gf - b.gs) - (a.gf - a.gs)) ||
+    (b.totalePunti - a.totalePunti) || String(a.squadra).localeCompare(String(b.squadra)));
+}
+const classificaDi = st => (D.classifica || {})[st] || null;
+
+function vuoto(icona, titolo, testo){
+  return `<div class="vuoto-box"><div class="ic">${icona}</div><h3>${esc(titolo)}</h3><p>${esc(testo)}</p></div>`;
+}
+
+/* ---------- HOME ---------- */
+function vHome(){
+  const bacheca = D.albo.bacheca || [];
+  const palmares = id => {
+    const b = bacheca.filter(x => { const s = squadraDi(x.squadra); return s && s.id === id; });
+    return b.reduce((a,x) => ({
+      titoli:(a.titoli||0)+(x.titoli||0), coppe:(a.coppe||0)+(x.coppe||0), podi:(a.podi||0)+(x.podi||0),
+      cucchiai:(a.cucchiai||0)+(x.cucchiai||0), stagioni:(a.stagioni||0)+(x.stagioni||0)
+    }), {});
+  };
+
+  const scheda = s => {
+    const p = palmares(s.id);
+    const t = [];
+    if(p.titoli)   t.push(`<span>${'🏆'.repeat(p.titoli)} ${p.titoli>1?p.titoli+' scudetti':'scudetto'}</span>`);
+    if(p.coppe)    t.push(`<span>${'🥇'.repeat(p.coppe)} ${p.coppe>1?p.coppe+' coppe':'coppa'}</span>`);
+    // i podi senza titolo valgono come piazzamento, altrimenti sarebbero invisibili
+    if(!p.titoli && p.podi) t.push(`<span>🥉 ${p.podi} podio${p.podi>1?'':''}</span>`);
+    if(p.cucchiai) t.push(`<span>${'🥄'.repeat(p.cucchiai)} cucchiaio</span>`);
+    if(!t.length){
+      const vuota = p.stagioni ? 'nessun trofeo' : (s.attiva === false ? 'nessun dato storico' : 'esordiente');
+      t.push(`<span class="zero">${vuota}</span>`);
+    }
+    // i nomi precedenti che differiscono solo per maiuscole non sono rinomine
+    const ex = (s.nomiPrecedenti||[]).filter(v => String(v).toLowerCase() !== s.nome.toLowerCase());
+
+    return `<div class="sq ${s.attiva === false ? 'ritirata' : ''}">
+      <div class="stemma"><img src="${esc(s.logo)}" alt="Stemma ${esc(s.nome)}" loading="lazy"></div>
+      <div class="corpo">
+        <h3>${esc(s.nome)}</h3>
+        ${ex.length ? `<div class="ex">ex ${esc(ex.join(' + '))}</div>` : ''}
+        <div class="mister ${s.allenatore ? '' : 'vuoto'}">${esc(s.allenatore || 'allenatore da inserire')}</div>
+        <div class="trofei">${t.join('')}</div>
+        ${s.nota ? `<div class="ex">${esc(s.nota)}</div>` : ''}
+        ${s.notaLogo ? `<div class="ex">⚠ ${esc(s.notaLogo)}</div>` : ''}
+        ${s.motto ? `<div class="motto">«${esc(s.motto)}»</div>` : ''}
+      </div>
+    </div>`;
+  };
+
+  const attive = (D.squadre||[]).filter(s => s.attiva !== false);
+  const ritirate = (D.squadre||[]).filter(s => s.attiva === false);
+
+  return `
+  <div class="box">
+    <div class="box-t"><span>▓ LEGA FANTAGUFI ${esc(D.lega.stagione)}</span><span>${attive.length} SQUADRE</span></div>
+    <div class="box-b">
+      ${D.lega.benvenuto ? `<p style="font-size:22px;margin:0 0 14px">${esc(D.lega.benvenuto)}</p>` : ''}
+      <div class="squadre">${attive.map(scheda).join('')}</div>
+    </div>
+  </div>
+  ${ritirate.length ? `<div class="box">
+    <div class="box-t"><span>▓ SQUADRE RITIRATE</span><span>NON PIU' IN LEGA</span></div>
+    <div class="box-b">
+      <p class="note" style="margin-top:0">Restano qui per l'albo d'oro: i loro risultati contano ancora nella bacheca eterna.</p>
+      <div class="squadre">${ritirate.map(scheda).join('')}</div>
+    </div>
+  </div>` : ''}`;
+}
+
+/* ---------- tabella classifica ---------- */
+function tabellaClassifica(arr){
+  const c = ordina(arr);
+  const fps = c.map(t => t.totalePunti).filter(v => typeof v === 'number');
+  const maxFp = Math.max(...fps), minFp = Math.min(...fps);
+
+  const rows = c.map((t,i) => {
+    const cls = `${i===0?'p1':''} ${i===c.length-1?'plast':''}`;
+    const fpCls = t.totalePunti === maxFp ? 'fp-best' : (t.totalePunti === minFp ? 'fp-worst' : '');
+    const sq = squadraDi(t.squadra);
+    const sotto = [t.allenatore || (sq && sq.allenatore), t.soprannome ? '«'+t.soprannome+'»' : ''].filter(Boolean).join(' — ');
+    return `
+    <tr class="${cls}">
+      <td class="pos">${i+1}${i===0?' 👑':''}${i===c.length-1?' 🥄':''}</td>
+      <td class="sx">
+        <span class="team">${etichetta(t.squadra)}</span>
+        ${sotto ? `<span class="nick">${esc(sotto)}</span>` : ''}
+      </td>
+      <td class="pts">${num(t.punti)}</td>
+      <td>${num(t.g)}</td><td>${num(t.v)}</td><td>${num(t.n)}</td><td>${num(t.p)}</td>
+      <td>${num(t.gf)}:${num(t.gs)}</td>
+      <td class="${fpCls}">${num(t.totalePunti)}</td>
+    </tr>
+    ${t.nota ? `<tr class="${cls}"><td></td><td class="sx cmt" colspan="7">${esc(t.nota)}</td></tr>` : ''}`;
+  }).join('');
+
+  return `<div class="scroll"><table>
+    <thead><tr><th>#</th><th class="sx">SQUADRA</th><th>PT</th><th>G</th><th>V</th><th>N</th><th>P</th><th>GF:GS</th><th>FANTAPT</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>
+  <p class="note">Verde = miglior fantapunteggio · Rosso = peggiore. Ordinamento: punti → differenza reti → fantapunti.</p>`;
+}
+
+/* ---------- CLASSIFICA ---------- */
+function vClassifica(){
+  const st = D.lega.stagione, c = classificaDi(st);
+  return `<div class="box">
+    <div class="box-t"><span>▓ CLASSIFICA ${esc(st)}</span><span>${esc(D.lega.stato || '')}</span></div>
+    <div class="box-b">${c ? tabellaClassifica(c) : vuoto('⚽','CAMPIONATO NON INIZIATO',
+      `La stagione ${st} parte dopo l'asta di settembre. La classifica compare qui dopo la prima giornata: nel frattempo l'ultima stagione conclusa e' nell'Albo d'Oro.`)}</div>
+  </div>`;
+}
+
+/* ---------- partita ---------- */
+function riga(m, giocata){
+  const played = giocata !== false && m.golCasa !== null && m.golTrasferta !== null;
+  const hw = played && m.golCasa > m.golTrasferta;
+  const aw = played && m.golTrasferta > m.golCasa;
+  const nome = s => `<div class="${ignoto(s) ? 'tbd-team' : ''}">${etichetta(s)}</div>`;
+  return `<div class="match">
+    <div class="mrow">
+      <div class="h"><div class="${hw?'win':''}">${nome(m.casa)}</div>${played ? `<div class="fp">${num(m.puntiCasa)} fp</div>` : ''}</div>
+      <div class="score ${played?'':'tbd'}">${played ? `${m.golCasa} - ${m.golTrasferta}` : 'DA GIOCARE'}</div>
+      <div class="a"><div class="${aw?'win':''}">${nome(m.trasferta)}</div>${played ? `<div class="fp">${num(m.puntiTrasferta)} fp</div>` : ''}</div>
+    </div>
+    ${m.commento ? `<div class="cmt">» ${esc(m.commento)}</div>` : ''}
+  </div>`;
+}
+
+/* ---------- CALENDARIO ---------- */
+function vCalendario(){
+  const tutte = [...(D.calendario||[])].sort((a,b) => a.giornata - b.giornata);
+
+  if(!tutte.length) return `<div class="box">
+    <div class="box-t"><span>▓ CALENDARIO</span><span>${esc(D.lega.stagione)}</span></div>
+    <div class="box-b">${vuoto('📅','CALENDARIO NON PUBBLICATO',
+      D.lega.notaCalendario || "Si compila dopo l'asta.")}</div>
+  </div>`;
+
+  const prossima = tutte.find(g => !g.giocata) || tutte[tutte.length-1];
+  if(filtroGiornata === null) filtroGiornata = prossima ? prossima.giornata : 0;
+  const mostrate = filtroGiornata === 0 ? [...tutte].reverse() : tutte.filter(g => g.giornata === filtroGiornata);
+
+  const opts = [`<option value="0" ${filtroGiornata===0?'selected':''}>TUTTE LE GIORNATE</option>`]
+    .concat(tutte.map(g => `<option value="${g.giornata}" ${filtroGiornata===g.giornata?'selected':''}>Giornata ${g.giornata}${g.giocata?'':' ⏳'}</option>`)).join('');
+
+  const body = mostrate.map(g => {
+    const data = g.data ? new Date(g.data + 'T12:00:00').toLocaleDateString('it-IT',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}) : '';
+    return `<div class="gday">
+      <h3><span>GIORNATA ${esc(g.giornata)}</span><span>${esc(data)}${g.giocata?'':' · ⏳'}</span></h3>
+      ${(g.partite||[]).map(m => riga(m, g.giocata)).join('')}
+    </div>`;
+  }).join('');
+
+  return `<div class="box">
+    <div class="box-t"><span>▓ CALENDARIO &amp; RISULTATI</span><span>${tutte.length} GIORNATE</span></div>
+    <div class="box-b">
+      <div class="picker"><label for="selG">GIORNATA</label><select id="selG">${opts}</select></div>
+      ${body}
+    </div>
+  </div>`;
+}
+
+/* ---------- COPPA ---------- */
+const edizioneCoppa = st => ((D.coppa || {}).edizioni || {})[st] || null;
+
+function vCoppa(){
+  const k = D.coppa, st = D.lega.stagione, e = edizioneCoppa(st);
+
+  const corpo = e ? `
+      <div class="trofeo">
+        <div class="cup">🏆</div>
+        <div class="nome">${esc(nomeMostrato(e.vincitore).nome)}</div>
+        <div>vincitore ${esc(k.nome)} ${esc(st)}</div>
+        ${e.notaVincitore ? `<p class="cmt">${esc(e.notaVincitore)}</p>` : ''}
+      </div>
+      ${e.formato ? `<p class="note" style="margin-top:0">Formato: ${esc(e.formato)}</p>` : ''}
+      ${e.avviso ? `<div class="warn" style="margin-top:12px">${esc(e.avviso)}</div>` : ''}
+      ${(e.fasi||[]).map(f => `
+        <div class="fase ${/finale/i.test(f.nome) && !/semi/i.test(f.nome) ? 'finale' : ''}">
+          <h3>${esc(f.nome)}</h3>
+          <div style="background:#fff;border:4px solid var(--nero);border-top:0">
+            ${(f.partite||[]).map(m => riga(m, false)).join('')}
+          </div>
+        </div>`).join('')}`
+    : vuoto('🏆', 'COPPA NON INIZIATA', k.vuoto || `Il tabellone della ${k.nome} ${st} non e' ancora stato sorteggiato.`);
+
+  return `
+  <div class="box">
+    <div class="box-t"><span>▓ ${esc(k.nome)} ${esc(st)}</span><span>${esc(D.lega.stato || '')}</span></div>
+    <div class="box-b">${corpo}</div>
+  </div>`;
+}
+
+/* ---------- ALBO D'ORO ---------- */
+function slot(cls, medaglia, ruolo, chi){
+  if(!chi) return '';
+  return `<div class="slot ${cls}">
+    <div class="medaglia">${medaglia}</div>
+    <div class="ruolo">${esc(ruolo)}</div>
+    <div class="chi ${ignoto(chi) ? 'tbd-team' : ''}">${etichetta(chi)}</div>
+  </div>`;
+}
+
+function podioDi(t){
+  const c = classificaDi(t.stagione);
+  if(c){
+    const o = ordina(c);
+    return {campione:o[0].squadra, secondo:o[1] && o[1].squadra, terzo:o[2] && o[2].squadra,
+            cucchiaio:o[o.length-1].squadra, calcolato:true};
+  }
+  return {campione:t.campione, secondo:t.secondo, terzo:t.terzo, cucchiaio:t.cucchiaio, calcolato:false};
+}
+
+function vAlbo(){
+  const a = D.albo;
+  const stagioni = (a.titoli||[]).map(t => t.stagione);
+  if(annata === null || !stagioni.includes(annata)) annata = stagioni[0];
+
+  const t = (a.titoli||[]).find(x => x.stagione === annata) || {};
+  const p = podioDi(t);
+  const cat = Object.fromEntries((D.premi||[]).map(x => [x.id, x]));
+  const cl = classificaDi(annata);
+  const opts = stagioni.map(s => `<option value="${esc(s)}" ${s===annata?'selected':''}>Stagione ${esc(s)}</option>`).join('');
+
+  const premi = (t.premi||[]).map(x => {
+    const d = cat[x.id] || {};
+    return `<div class="pr">
+      <div class="ico">${esc(d.emoji || '•')}</div>
+      <div>
+        <div class="tit">${esc(d.nome || x.id)}</div>
+        <div class="vin ${ignoto(x.vincitore)?'tbd-team':''}">${etichetta(x.vincitore)}</div>
+        ${d.descrizione ? `<div class="fp">${esc(d.descrizione)}</div>` : ''}
+        ${x.dettaglio ? `<div class="det">» ${esc(x.dettaglio)}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const bacheca = [...(a.bacheca||[])]
+    .sort((x,y) => (y.titoli - x.titoli) || ((y.coppe||0) - (x.coppe||0)) ||
+                   ((y.podi||0) - (x.podi||0)) || (y.fantapuntiTotali - x.fantapuntiTotali))
+    .map((b,i) => {
+      const dr = (b.gfTotali||0) - (b.gsTotali||0);
+      const sq = squadraDi(b.squadra);
+      return `<tr>
+        <td class="pos">${i+1}</td>
+        <td class="sx"><span class="team">${etichetta(b.squadra)}</span>${(b.allenatore || (sq && sq.allenatore)) ? `<span class="nick">${esc(b.allenatore || sq.allenatore)}</span>` : ''}</td>
+        <td>${num(b.stagioni)}</td>
+        <td class="pts">${'🏆'.repeat(b.titoli) || '—'}</td>
+        <td>${'🥇'.repeat(b.coppe||0) || '—'}</td>
+        <td>${num(b.podi)}</td>
+        <td>${'🥄'.repeat(b.cucchiai) || '—'}</td>
+        <td class="pts">${num(b.fantapuntiTotali)}</td>
+        <td>${num(b.gfTotali)}</td>
+        <td>${num(b.gsTotali)}</td>
+        <td class="${dr>0?'fp-best':(dr<0?'fp-worst':'')}">${dr>0?'+':''}${dr}</td>
+      </tr>`;
+    }).join('');
+
+  const record = (a.record||[]).map(r => `
+    <div class="card">
+      <h3>${esc(r.titolo)}</h3>
+      <div class="big">${esc(r.valore)}</div>
+      <p><b>${etichetta(r.chi)}</b><br><span class="nick">${esc(r.quando)}</span></p>
+    </div>`).join('');
+
+  return `
+  <div class="box">
+    <div class="box-t"><span>▓ ALBO D'ORO</span><span>DAL 2017 · ${stagioni.length} STAGIONI</span></div>
+    <div class="box-b">
+      <div class="picker"><label for="selA">ANNATA</label><select id="selA">${opts}</select></div>
+
+      <div class="podio">
+        ${slot('oro','🥇','CAMPIONE',p.campione)}
+        ${slot('argento','🥈','SECONDO',p.secondo)}
+        ${slot('bronzo','🥉','TERZO',p.terzo)}
+        ${slot('','🏆','COPPA',t.coppa)}
+        ${slot('legno','🥄','CUCCHIAIO',p.cucchiaio)}
+      </div>
+      ${t.nota ? `<p class="cmt" style="margin-top:0">${esc(t.nota)}</p>` : ''}
+
+      <div class="gday">
+        <h3><span>CLASSIFICA FINALE ${esc(annata)}</span></h3>
+        <div style="padding:12px">
+          ${cl ? tabellaClassifica(cl)
+               : `<div class="warn" style="margin:0">Classifica ${esc(annata)} non disponibile: aggiungila in <code>data/classifica.json</code> sotto la chiave "${esc(annata)}".</div>`}
+        </div>
+      </div>
+
+      ${(() => {
+        const e = edizioneCoppa(annata);
+        if(!e) return '';
+        return `<div class="gday">
+          <h3><span>COPPA ${esc(annata)}</span><span>🏆 ${esc(nomeMostrato(e.vincitore).nome)}</span></h3>
+          <div style="padding:12px">
+            ${e.avviso ? `<div class="warn">${esc(e.avviso)}</div>` : ''}
+            ${(e.fasi||[]).map(f => `
+              <div class="fase ${/finale/i.test(f.nome) && !/semi/i.test(f.nome) ? 'finale' : ''}">
+                <h3>${esc(f.nome)}</h3>
+                <div style="background:#fff;border:4px solid var(--nero);border-top:0">
+                  ${(f.partite||[]).map(m => riga(m, false)).join('')}
+                </div>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      })()}
+
+      <div class="gday">
+        <h3><span>PREMI ${esc(annata)}</span><span>${(t.premi||[]).length} PREMI</span></h3>
+        <div style="padding:4px 12px 12px">${premi || '<p class="note">Nessun premio registrato per questa stagione.</p>'}</div>
+      </div>
+
+      ${p.calcolato ? '<p class="note">Podio e cucchiaio sono ricavati dalla classifica di questa stagione. I nomi mostrati sono quelli attuali.</p>' : ''}
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-t"><span>▓ BACHECA ETERNA</span><span>TOTALI DI CARRIERA</span></div>
+    <div class="box-b"><div class="scroll"><table>
+      <thead><tr>
+        <th>#</th><th class="sx">SQUADRA</th><th>ST</th><th>🏆</th><th>🥇</th><th>PODI</th><th>🥄</th>
+        <th>FANTAPT</th><th>GF</th><th>GS</th><th>DR</th>
+      </tr></thead>
+      <tbody>${bacheca}</tbody>
+    </table></div>
+    <p class="note">ST = stagioni giocate · 🏆 scudetti · 🥇 coppe · PODI = piazzamenti nei primi 3 · FANTAPT, GF, GS e DR sono totali storici cumulativi.</p>
+    <p class="note">Una squadra nata da una fusione compare una volta per ogni squadra da cui deriva: sono le due carriere che confluiscono, tenute separate perché in quelle stagioni erano squadre distinte.</p>
+    ${a.notaBacheca ? `<p class="note">${esc(a.notaBacheca)}</p>` : ''}
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-t"><span>▓ RECORD IMBATTUTI</span></div>
+    <div class="box-b"><div class="grid">${record}</div></div>
+  </div>`;
+}
+
+/* ---------- REGOLAMENTO ---------- */
+function vRegolamento(){
+  const r = D.regolamento;
+  const sezioni = (r.sezioni||[]);
+
+  return `<div class="box">
+    <div class="box-t"><span>▓ ${esc(r.titolo)}</span><span>${esc(r.sottotitolo||'')}</span></div>
+    <div class="box-b">
+      ${!sezioni.length
+        ? vuoto('📜','REGOLAMENTO IN ARRIVO', r.vuoto || "Si scrive dopo l'asta.")
+        : (r.avviso ? `<div class="warn">${esc(r.avviso)}</div>` : '') + sezioni.map((s,i) => `
+          <div class="rego">
+            <h3><span class="ic">${esc(s.icona||'§')}</span><span>${i+1}. ${esc(s.titolo)}</span></h3>
+            <ol>${(s.regole||[]).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+            ${s.nota ? `<p class="cmt">${esc(s.nota)}</p>` : ''}
+          </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+const VIEWS = {home:vHome, classifica:vClassifica, calendario:vCalendario, coppa:vCoppa, albo:vAlbo, regolamento:vRegolamento};
+
+function render(tab){
+  try{
+    $('#main').innerHTML = VIEWS[tab]();
+  }catch(e){
+    $('#main').innerHTML = `<div class="err">Errore nel rendering: ${esc(e.message)}</div>`;
+    console.error(e);
+  }
+  const selG = $('#selG');
+  if(selG) selG.addEventListener('change', e => { filtroGiornata = Number(e.target.value); render('calendario'); });
+  const selA = $('#selA');
+  if(selA) selA.addEventListener('change', e => { annata = e.target.value; render('albo'); });
+
+  document.querySelectorAll('nav button').forEach(b =>
+    b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+  // su file:// alcuni browser vietano replaceState: non e' un errore fatale
+  try{
+    if(location.hash.slice(1) !== tab) history.replaceState(null,'','#'+tab);
+  }catch(_){}
+}
+
+function testata(){
+  const l = D.lega;
+  $('#logo').textContent = l.nomeLega;
+  $('#motto').textContent = l.motto || '';
+  document.title = `${l.nomeLega} — Fantacalcio`;
+  $('#pills').innerHTML = `
+    <span class="pill">STAGIONE ${esc(l.stagione)}</span>
+    <span class="pill blu">${esc(l.stato || '')}</span>
+    <span class="pill verde">${(D.squadre||[]).filter(s => s.attiva !== false).length} SQUADRE</span>`;
+
+  const bits = [`🦉 LEGA FANTAGUFI — STAGIONE ${l.stagione}`];
+  const prec = classificaDi(l.stagionePrecedente);
+  if(prec){
+    const o = ordina(prec), fp = [...o].sort((a,b)=>b.totalePunti-a.totalePunti);
+    bits.push(`🏆 CAMPIONE ${l.stagionePrecedente}: ${nomeMostrato(o[0].squadra).nome}`);
+    const ec = edizioneCoppa(l.stagionePrecedente);
+    if(ec && ec.vincitore) bits.push(`🥇 COPPA ${l.stagionePrecedente}: ${nomeMostrato(ec.vincitore).nome}`);
+    bits.push(`🥄 CUCCHIAIO IN CARICA: ${nomeMostrato(o[o.length-1].squadra).nome}`);
+    bits.push(`🔥 MIGLIOR FANTAPUNTEGGIO: ${nomeMostrato(fp[0].squadra).nome} (${fp[0].totalePunti})`);
+  }
+  bits.push('📅 ASTA A SETTEMBRE 2026');
+  bits.push('📣 IL REGOLAMENTO NON SI DISCUTE. SI SUBISCE.');
+  $('#ticker').textContent = '  ★  ' + bits.join('  ★  ') + '  ★  ';
+}
+
+document.querySelectorAll('nav button').forEach(b =>
+  b.addEventListener('click', () => render(b.dataset.tab)));
+
+(async () => {
+  try{
+    const nomi = ['lega','squadre','classifica','calendario','coppa','albo','premi','regolamento'];
+    const caricati = await Promise.all(nomi.map(load));
+    nomi.forEach((n,i) => D[n] = caricati[i]);
+    costruisciAlias();
+    testata();
+    const tab = VIEWS[location.hash.slice(1)] ? location.hash.slice(1) : 'home';
+    render(tab);
+  }catch(e){
+    console.error(e);
+    $('#logo').textContent = 'ERRORE 404';
+    $('#main').innerHTML = `<div class="err">
+      <b>Non riesco a leggere i dati.</b><br>${esc(e.message)}<br><br>
+      Se stai aprendo il file con doppio click, il browser blocca la lettura dei JSON.<br>
+      Usa <code>anteprima.html</code>, oppure avvia un server: <code>python -m http.server</code>
+    </div>`;
+  }
+})();
+</script>
+</body>
+</html>

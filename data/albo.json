@@ -1,0 +1,254 @@
+{
+  "titoli": [
+    {
+      "stagione": "2025/26",
+      "campione": "complimenti per la vittoria",
+      "secondo": "Scarsenal",
+      "terzo": "ICinesiNonEsistono",
+      "coppa": "Scarsenal",
+      "cucchiaio": "Sellone Ciompi",
+      "nota": "Campionato dominato con 16 punti di vantaggio. Scarsenal si consola con la Coppa e con il secondo posto piu' fortunato di sempre.",
+      "premi": [
+        {
+          "id": "baciato",
+          "vincitore": "Scarsenal",
+          "dettaglio": "2465 fantapunti, nono della lega. Secondo posto. Sette posizioni di scarto tra merito e classifica."
+        },
+        {
+          "id": "cucchiaio",
+          "vincitore": "Sellone Ciompi",
+          "dettaglio": "Ultimo con piu' fantapunti del secondo classificato. Ha protestato. PAGA TAVERNA comunque."
+        },
+        {
+          "id": "rapina",
+          "vincitore": "Ji Impalatori",
+          "dettaglio": "Miglior fantapunteggio della lega (2588) e quinto posto. Ogni domenica un capolavoro, ogni lunedi' una condoglianza."
+        },
+        {
+          "id": "pareggi",
+          "vincitore": "Ji Impalatori",
+          "dettaglio": "12 pareggi su 36. Un terzo del campionato finito in parita'."
+        },
+        {
+          "id": "colabrodo",
+          "vincitore": "ASfiga",
+          "dettaglio": "63 gol subiti, otto in piu' del secondo peggiore. Il portiere e' stato sentito dagli inquirenti."
+        },
+        {
+          "id": "astinenza",
+          "vincitore": "JuZar",
+          "dettaglio": "38 gol in 36 giornate e il peggior fantapunteggio assoluto, tanto per non lasciare dubbi."
+        },
+        {
+          "id": "equilibrio",
+          "vincitore": "Iron First FC",
+          "dettaglio": "14 vittorie, 14 sconfitte, 53 gol fatti e 49 subiti. Una stagione che si annulla da sola."
+        },
+        {
+          "id": "profetico",
+          "vincitore": "complimenti per la vittoria",
+          "dettaglio": "Si e' scritto i complimenti nel nome e poi li ha incassati davvero. Insopportabile."
+        },
+        {
+          "id": "avvocato",
+          "vincitore": "Il RE AMMINISTRATORE",
+          "dettaglio": "Si e' nominato re nel nome della squadra. Il settimo posto suggerisce una monarchia costituzionale."
+        },
+        {
+          "id": "doppietta",
+          "vincitore": "Scarsenal",
+          "dettaglio": "Campionato perso, coppa vinta. Ne parla come se avesse fatto il triplete."
+        }
+      ]
+    },
+    {
+      "stagione": "2024/25",
+      "campione": "???",
+      "secondo": "???",
+      "terzo": "???",
+      "coppa": "???",
+      "cucchiaio": "???",
+      "nota": "DA COMPLETARE — duplica questo blocco per ogni stagione dal 2017/18 in poi.",
+      "premi": [
+        {
+          "id": "cucchiaio",
+          "vincitore": "???",
+          "dettaglio": ""
+        }
+      ]
+    }
+  ],
+  "bacheca": [
+    {
+      "squadra": "complimenti per la vittoria",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 1,
+      "coppe": 0,
+      "podi": 1,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2577.5,
+      "gfTotali": 64,
+      "gsTotali": 47
+    },
+    {
+      "squadra": "Scarsenal",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 1,
+      "podi": 1,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2465.0,
+      "gfTotali": 43,
+      "gsTotali": 41
+    },
+    {
+      "squadra": "ICinesiNonEsistono",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 1,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2555.5,
+      "gfTotali": 59,
+      "gsTotali": 51
+    },
+    {
+      "squadra": "FC ETTANERA",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2572.0,
+      "gfTotali": 62,
+      "gsTotali": 49
+    },
+    {
+      "squadra": "Ji Impalatori",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2588.0,
+      "gfTotali": 62,
+      "gsTotali": 57
+    },
+    {
+      "squadra": "Iron First FC",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2537.5,
+      "gfTotali": 53,
+      "gsTotali": 49
+    },
+    {
+      "squadra": "Il RE AMMINISTRATORE",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2496.5,
+      "gfTotali": 44,
+      "gsTotali": 52
+    },
+    {
+      "squadra": "JuZar",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2447.5,
+      "gfTotali": 38,
+      "gsTotali": 49
+    },
+    {
+      "squadra": "ASfiga",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 0,
+      "fantapuntiTotali": 2490.0,
+      "gfTotali": 48,
+      "gsTotali": 63
+    },
+    {
+      "squadra": "Sellone Ciompi",
+      "allenatore": "",
+      "stagioni": 1,
+      "titoli": 0,
+      "coppe": 0,
+      "podi": 0,
+      "cucchiai": 1,
+      "fantapuntiTotali": 2465.5,
+      "gfTotali": 40,
+      "gsTotali": 55
+    }
+  ],
+  "notaBacheca": "Totali di carriera: sommano tutte le stagioni presenti nell'albo d'oro. Ora contengono solo la 2025/26 — aggiornali a mano quando aggiungi le annate precedenti.",
+  "record": [
+    {
+      "titolo": "Miglior fantapunteggio stagionale",
+      "valore": "2588",
+      "chi": "Ji Impalatori",
+      "quando": "2025/26 — e ha chiuso quinto"
+    },
+    {
+      "titolo": "Peggior fantapunteggio stagionale",
+      "valore": "2447.5",
+      "chi": "JuZar",
+      "quando": "2025/26"
+    },
+    {
+      "titolo": "Piu' punti in classifica",
+      "valore": "73 pt",
+      "chi": "complimenti per la vittoria",
+      "quando": "2025/26"
+    },
+    {
+      "titolo": "Peggior difesa",
+      "valore": "63 gol subiti",
+      "chi": "ASfiga",
+      "quando": "2025/26"
+    },
+    {
+      "titolo": "Peggior attacco",
+      "valore": "38 gol fatti",
+      "chi": "JuZar",
+      "quando": "2025/26"
+    },
+    {
+      "titolo": "Piu' pareggi in una stagione",
+      "valore": "12",
+      "chi": "Ji Impalatori",
+      "quando": "2025/26"
+    },
+    {
+      "titolo": "Divario merito-classifica piu' vergognoso",
+      "valore": "7 posizioni",
+      "chi": "Scarsenal",
+      "quando": "2° in classifica, 9° per fantapunti"
+    },
+    {
+      "titolo": "Cucchiaio piu' immeritato",
+      "valore": "2465.5 fantapunti",
+      "chi": "Sellone Ciompi",
+      "quando": "ultimo, con mezzo punto in piu' del secondo"
+    }
+  ]
+}

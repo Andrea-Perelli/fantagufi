@@ -1,0 +1,62 @@
+[
+  {
+    "id": "baciato",
+    "emoji": "🍀",
+    "nome": "Baciato dal Culo",
+    "descrizione": "A chi arriva piu' in alto di quanto i fantapunti giustifichino."
+  },
+  {
+    "id": "cucchiaio",
+    "emoji": "🥄",
+    "nome": "Cucchiaio di Legno",
+    "descrizione": "All'ultimo in classifica. PAGA TAVERNA all'arrostata di fine stagione, senza appello."
+  },
+  {
+    "id": "rapina",
+    "emoji": "😤",
+    "nome": "Rapina a Mano Armata",
+    "descrizione": "A chi ha giocato meglio di tutti e ha vinto meno di tutti."
+  },
+  {
+    "id": "pareggi",
+    "emoji": "🤝",
+    "nome": "Re del Pareggio",
+    "descrizione": "A chi accumula piu' pareggi in stagione."
+  },
+  {
+    "id": "colabrodo",
+    "emoji": "🕳️",
+    "nome": "Colabrodo d'Oro",
+    "descrizione": "Alla peggior difesa della lega."
+  },
+  {
+    "id": "astinenza",
+    "emoji": "🥱",
+    "nome": "Premio Astinenza",
+    "descrizione": "Al peggior attacco della lega."
+  },
+  {
+    "id": "equilibrio",
+    "emoji": "⚖️",
+    "nome": "Equilibrio Cosmico",
+    "descrizione": "A chi chiude la stagione piu' simmetrica e insignificante."
+  },
+  {
+    "id": "profetico",
+    "emoji": "👑",
+    "nome": "Nome Piu' Profetico",
+    "descrizione": "Alla squadra il cui nome ha previsto la stagione."
+  },
+  {
+    "id": "avvocato",
+    "emoji": "📋",
+    "nome": "Avvocato della Lega",
+    "descrizione": "A chi cita il regolamento piu' spesso, sempre a proprio favore."
+  },
+  {
+    "id": "doppietta",
+    "emoji": "🏆",
+    "nome": "Doppietta Sfiorata",
+    "descrizione": "A chi ha vinto la Coppa senza vincere il campionato."
+  }
+]

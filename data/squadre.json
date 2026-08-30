@@ -1,0 +1,103 @@
+[
+  {
+    "id": "complimenti",
+    "nome": "Complimenti per la Vittoria",
+    "attiva": true,
+    "allenatore": "Stefano e Pasqui",
+    "motto": "Birra, griglia e complimenti. Soprattutto complimenti.",
+    "logo": "assets/squadre/complimenti.jpg",
+    "nomiPrecedenti": ["complimenti per la vittoria"]
+  },
+  {
+    "id": "scarsenal",
+    "nome": "Scarsenal",
+    "attiva": true,
+    "allenatore": "Lorenzo Taverna",
+    "motto": "Si Sa",
+    "logo": "assets/squadre/scarsenal.jpg",
+    "nomiPrecedenti": []
+  },
+  {
+    "id": "cinesi",
+    "nome": "I Cinesi Non Esistono",
+    "attiva": true,
+    "allenatore": "Andrea Perelli",
+    "motto": "Il calcio secondo Perelli.",
+    "logo": "assets/squadre/cinesi.jpg",
+    "nomiPrecedenti": ["ICinesiNonEsistono"]
+  },
+  {
+    "id": "tecnotazza",
+    "nome": "Tecnotazza",
+    "attiva": true,
+    "allenatore": "Domenico Martinelli",
+    "motto": "Prima la tazza, poi la formazione.",
+    "logo": "assets/squadre/tecnotazza.jpg",
+    "nomiPrecedenti": ["FC ETTANERA"]
+  },
+  {
+    "id": "impalatori",
+    "nome": "Ji Impalatori",
+    "attiva": true,
+    "allenatore": "Matteo Cedrino",
+    "motto": "La mia squadra è la più forte.",
+    "logo": "assets/squadre/impalatori.jpg",
+    "nomiPrecedenti": []
+  },
+  {
+    "id": "asfiga",
+    "nome": "ASfiga",
+    "attiva": true,
+    "allenatore": "Riccardo Parisse",
+    "motto": "Sfortunato in campo, fortunato in amore.",
+    "logo": "assets/squadre/asfiga.jpg",
+    "nomiPrecedenti": []
+  },
+  {
+    "id": "sellone",
+    "nome": "Sellone Ciompi",
+    "attiva": true,
+    "allenatore": "Andrea Ciofani",
+    "motto": "Grinta, cuore e Sellone. Un solo obiettivo: vincere.",
+    "logo": "assets/squadre/sellone.jpg",
+    "nomiPrecedenti": []
+  },
+  {
+    "id": "reallucoli",
+    "nome": "Real Lucoli",
+    "attiva": true,
+    "allenatore": "Gabriele Giamberardini",
+    "motto": "Il trono non si eredita. Si occupa.",
+    "logo": "assets/squadre/reallucoli.jpg",
+    "nomiPrecedenti": ["Il RE AMMINISTRATORE"]
+  },
+  {
+    "id": "frecciatodd",
+    "nome": "FC Freccia Todd",
+    "attiva": true,
+    "allenatore": "Claudio",
+    "motto": "Mira precisa, arrivo puntuale. Est. 2024.",
+    "logo": "assets/squadre/frecciatodd.jpg",
+    "nomiPrecedenti": []
+  },
+  {
+    "id": "akatsuki",
+    "nome": "Akatsuki FC",
+    "attiva": true,
+    "allenatore": "Mattia e Ivan",
+    "motto": "All'alba arriviamo in due. E non per fare amicizia.",
+    "logo": "assets/squadre/akatsuki.jpg",
+    "nomiPrecedenti": ["Iron First FC", "JuZar"],
+    "nota": "Nata dall'unione di Iron First FC e JuZar. Prende il posto in lega di Toduto."
+  },
+  {
+    "id": "toduto",
+    "nome": "Toduto",
+    "attiva": false,
+    "allenatore": "Mattia e Claudio",
+    "motto": "Due contro tutti, con tecniche proibite.",
+    "logo": "assets/squadre/toduto.jpg",
+    "nomiPrecedenti": [],
+    "nota": "Ritirata dopo il 2025/26. Il posto in lega è passato ad Akatsuki FC."
+  }
+]
