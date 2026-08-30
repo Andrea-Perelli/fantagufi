@@ -188,7 +188,7 @@ footer{color:var(--crema);font-size:18px;text-align:center;text-shadow:2px 2px 0
   <main id="main"><div class="box"><div class="box-b">Caricamento dati...</div></div></main>
 
   <footer>
-    &lt; Il gong non aspetta nessuno &gt;<br>
+    &lt; TAVERNA deve una cena a Perelli &gt;<br>
     Best viewed in Netscape Navigator 4.0 &middot; 800x600
   </footer>
 </div>
@@ -465,7 +465,8 @@ function vAlbo(){
       <div class="ico">${esc(d.emoji || '•')}</div>
       <div>
         <div class="tit">${esc(d.nome || x.id)}</div>
-        <div class="vin ${ignoto(x.vincitore)?'tbd-team':''}">${etichetta(x.vincitore)}</div>
+        <!-- nei premi resta il nome che la squadra aveva quell'anno, senza rinomine -->
+        <div class="vin ${ignoto(x.vincitore)?'tbd-team':''}">${esc(x.vincitore)}</div>
         ${d.descrizione ? `<div class="fp">${esc(d.descrizione)}</div>` : ''}
         ${x.dettaglio ? `<div class="det">» ${esc(x.dettaglio)}</div>` : ''}
       </div>
@@ -546,7 +547,7 @@ function vAlbo(){
         <div style="padding:4px 12px 12px">${premi || '<p class="note">Nessun premio registrato per questa stagione.</p>'}</div>
       </div>
 
-      ${p.calcolato ? '<p class="note">Podio e cucchiaio sono ricavati dalla classifica di questa stagione. I nomi mostrati sono quelli attuali.</p>' : ''}
+      ${p.calcolato ? '<p class="note">Podio e cucchiaio sono ricavati dalla classifica di questa stagione.</p>' : ''}
     </div>
   </div>
 
