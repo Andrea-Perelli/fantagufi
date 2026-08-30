@@ -36,7 +36,7 @@ Se lo vuoi: comprane uno, scrivilo in Settings → Pages → Custom domain, poi 
 
 ## Cosa c'è dentro
 
-Sei tab: **Home** (le 10 squadre con stemma, allenatore, motto e palmarès), Classifica, Calendario, Coppa, Albo d'Oro, Regolamento. Nell'Albo d'Oro un menù a tendina scegli l'annata e mostra podio, classifica finale e premi di quell'anno; Bacheca Eterna e Record stanno in fondo alla pagina.
+Sette tab: **Home** (le 10 squadre con stemma, allenatore, motto e palmarès), Classifica, Calendario, Coppa, Albo d'Oro, Regolamento, Sponsor. Nell'Albo d'Oro un menù a tendina scegli l'annata e mostra podio, classifica finale e premi di quell'anno; Bacheca Eterna e Record stanno in fondo alla pagina.
 
 | File | Contenuto | Stato |
 |---|---|---|
@@ -193,7 +193,7 @@ Appena `sezioni` contiene qualcosa, lo stato d'attesa scompare da solo.
 
 ### sponsor.json
 
-Il riquadro in fondo alla home. Ogni voce dell'array `sponsor`:
+Alimenta il tab **Sponsor**. Ogni voce dell'array `sponsor`:
 
 ```json
 {
@@ -209,7 +209,7 @@ Il riquadro in fondo alla home. Ogni voce dell'array `sponsor`:
 
 `logo` e `sito` possono restare vuoti. Senza logo compare un segnaposto 🥩 con scritto "logo in arrivo": quando arriva quello vero, mettilo in `assets/sponsor/` e scrivi il percorso nel campo.
 
-Se l'array `sponsor` è vuoto, il riquadro sparisce del tutto dalla home.
+Se l'array `sponsor` è vuoto il tab resta, con uno stato d'attesa che si può personalizzare col campo `vuoto`.
 
 ### calendario.json
 

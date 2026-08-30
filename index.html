@@ -194,6 +194,7 @@ footer{color:var(--crema);font-size:18px;text-align:center;text-shadow:2px 2px 0
     <button role="tab" aria-selected="false" data-tab="coppa">COPPA</button>
     <button role="tab" aria-selected="false" data-tab="albo">ALBO D'ORO</button>
     <button role="tab" aria-selected="false" data-tab="regolamento">REGOLAMENTO</button>
+    <button role="tab" aria-selected="false" data-tab="sponsor">SPONSOR</button>
   </nav>
 
   <main id="main"><div class="box"><div class="box-b">Caricamento dati...</div></div></main>
@@ -312,15 +313,18 @@ function vHome(){
       <p class="note" style="margin-top:0">Restano qui per l'albo d'oro: i loro risultati contano ancora nella bacheca eterna.</p>
       <div class="squadre">${ritirate.map(scheda).join('')}</div>
     </div>
-  </div>` : ''}
-  ${vSponsor()}`;
+  </div>` : ''}`;
 }
 
 /* ---------- SPONSOR ---------- */
 function vSponsor(){
   const s = D.sponsor || {};
   const lista = s.sponsor || [];
-  if(!lista.length) return '';
+
+  if(!lista.length) return `<div class="box">
+    <div class="box-t"><span>▓ ${esc(s.titolo || 'SPONSOR')}</span><span>${esc(D.lega.stagione)}</span></div>
+    <div class="box-b">${vuoto('🤝','NESSUNO SPONSOR', s.vuoto || 'Spazio disponibile: chi paga qualcosa finisce scritto qui.')}</div>
+  </div>`;
 
   const cards = lista.map(x => `
     <div class="sp">
@@ -632,7 +636,7 @@ function vRegolamento(){
   </div>`;
 }
 
-const VIEWS = {home:vHome, classifica:vClassifica, calendario:vCalendario, coppa:vCoppa, albo:vAlbo, regolamento:vRegolamento};
+const VIEWS = {home:vHome, classifica:vClassifica, calendario:vCalendario, coppa:vCoppa, albo:vAlbo, regolamento:vRegolamento, sponsor:vSponsor};
 
 function render(tab){
   try{
