@@ -13,7 +13,7 @@ import sys
 
 BASE = pathlib.Path(__file__).parent
 FILES = ['lega', 'squadre', 'classifica', 'calendario',
-         'coppa', 'albo', 'premi', 'regolamento']
+         'coppa', 'albo', 'premi', 'regolamento', 'sponsor']
 
 
 def main():

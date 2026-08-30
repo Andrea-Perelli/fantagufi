@@ -48,6 +48,7 @@ Sei tab: **Home** (le 10 squadre con stemma, allenatore, motto e palmarès), Cla
 | `data/albo.json` | Annate (podio + premi), bacheca, record | ⚠️ solo 2025/26 |
 | `data/premi.json` | Catalogo dei premi (nome + descrizione) | ✅ completo |
 | `data/regolamento.json` | Sezioni di regolamento | ⬜ vuoto, dopo l'asta |
+| `data/sponsor.json` | Sponsor della stagione | ⚠️ manca il logo |
 | `assets/logo.png` | Stemma della lega | ✅ |
 | `assets/squadre/*.jpg` | I 10 stemmi delle squadre | ✅ |
 
@@ -189,6 +190,26 @@ Ora è vuoto: `sezioni: []` e un messaggio in `vuoto` che il sito mostra come st
 ```
 
 Appena `sezioni` contiene qualcosa, lo stato d'attesa scompare da solo.
+
+### sponsor.json
+
+Il riquadro in fondo alla home. Ogni voce dell'array `sponsor`:
+
+```json
+{
+  "id": "antonelli",
+  "nome": "Macelleria Antonelli",
+  "stagione": "2026/27",
+  "contributo": "Paga il caminetto all'asta",
+  "logo": "assets/sponsor/antonelli.jpg",
+  "sito": "https://...",
+  "nota": "Riga in corsivo, opzionale."
+}
+```
+
+`logo` e `sito` possono restare vuoti. Senza logo compare un segnaposto 🥩 con scritto "logo in arrivo": quando arriva quello vero, mettilo in `assets/sponsor/` e scrivi il percorso nel campo.
+
+Se l'array `sponsor` è vuoto, il riquadro sparisce del tutto dalla home.
 
 ### calendario.json
 

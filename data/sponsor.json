@@ -1,0 +1,14 @@
+{
+  "titolo": "SPONSOR UFFICIALE",
+  "sponsor": [
+    {
+      "id": "antonelli",
+      "nome": "La Macelleria Agricola Antonelli",
+      "stagione": "2026/27",
+      "contributo": "Paga il caminetto all'asta",
+      "logo": "assets/sponsor/antonelli.jpg",
+      "sito": "",
+      "nota": "Senza di loro l'asta si farebbe a stomaco vuoto, e un'asta a stomaco vuoto e' un'asta con scelte discutibili."
+    }
+  ]
+}

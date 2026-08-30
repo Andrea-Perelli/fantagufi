@@ -92,6 +92,17 @@ tbody tr:nth-child(even){background:rgba(0,0,0,.045)}
 .card p{margin:6px 0 0;font-size:19px;color:#4a4133}
 .big{font-size:30px;line-height:1}
 
+/* sponsor */
+.sponsor{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.sp{display:grid;grid-template-columns:110px 1fr;gap:12px;background:#fff;border:4px solid var(--nero);box-shadow:5px 5px 0 rgba(0,0,0,.4);padding:12px;align-items:center}
+.sp .marchio{aspect-ratio:1;background:var(--notte);border:3px solid var(--nero);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sp .marchio img{width:100%;height:100%;object-fit:contain;image-rendering:auto}
+.sp .marchio .placeholder{text-align:center;color:var(--giallo);font-size:34px;line-height:1.1}
+.sp .marchio .placeholder small{display:block;font-size:14px;color:#c9c0a8;margin-top:4px}
+.sp h3{font-family:'Press Start 2P', monospace;font-size:10px;margin:0 0 6px;line-height:1.6}
+.sp .ruolo{background:var(--nero);color:var(--giallo);display:inline-block;padding:4px 8px;font-size:18px;margin-bottom:6px}
+.sp .cmt{margin-top:4px}
+
 .warn{background:var(--giallo);border:4px solid var(--nero);padding:10px 12px;font-size:19px;margin-bottom:14px}
 .note{font-size:17px;color:#6e6552;margin:10px 0 0}
 .vuoto-box{text-align:center;padding:26px 14px}
@@ -301,7 +312,36 @@ function vHome(){
       <p class="note" style="margin-top:0">Restano qui per l'albo d'oro: i loro risultati contano ancora nella bacheca eterna.</p>
       <div class="squadre">${ritirate.map(scheda).join('')}</div>
     </div>
-  </div>` : ''}`;
+  </div>` : ''}
+  ${vSponsor()}`;
+}
+
+/* ---------- SPONSOR ---------- */
+function vSponsor(){
+  const s = D.sponsor || {};
+  const lista = s.sponsor || [];
+  if(!lista.length) return '';
+
+  const cards = lista.map(x => `
+    <div class="sp">
+      <div class="marchio">
+        ${x.logo
+          ? `<img src="${esc(x.logo)}" alt="Logo ${esc(x.nome)}" loading="lazy">`
+          : `<div class="placeholder">🥩<small>logo in arrivo</small></div>`}
+      </div>
+      <div>
+        <h3>${esc(x.nome)}</h3>
+        ${x.stagione ? `<div class="ruolo">Sponsor ${esc(x.stagione)}</div>` : ''}
+        ${x.contributo ? `<p style="margin:0;font-size:20px">${esc(x.contributo)}</p>` : ''}
+        ${x.nota ? `<p class="cmt">${esc(x.nota)}</p>` : ''}
+        ${x.sito ? `<p style="margin:6px 0 0"><a href="${esc(x.sito)}" target="_blank" rel="noopener">${esc(x.sito)}</a></p>` : ''}
+      </div>
+    </div>`).join('');
+
+  return `<div class="box">
+    <div class="box-t"><span>▓ ${esc(s.titolo || 'SPONSOR')}</span><span>${esc(D.lega.stagione)}</span></div>
+    <div class="box-b"><div class="sponsor">${cards}</div></div>
+  </div>`;
 }
 
 /* ---------- tabella classifica ---------- */
@@ -644,7 +684,7 @@ document.querySelectorAll('nav button').forEach(b =>
 
 (async () => {
   try{
-    const nomi = ['lega','squadre','classifica','calendario','coppa','albo','premi','regolamento'];
+    const nomi = ['lega','squadre','classifica','calendario','coppa','albo','premi','regolamento','sponsor'];
     const caricati = await Promise.all(nomi.map(load));
     nomi.forEach((n,i) => D[n] = caricati[i]);
     costruisciAlias();
